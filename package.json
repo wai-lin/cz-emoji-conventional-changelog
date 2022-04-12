@@ -37,7 +37,7 @@
     "mock-require": "3.0.3",
     "prettier": "1.19.1",
     "semantic-release": "17.4.7",
-    "semver": "6.3.0"
+    "semver": "7.3.7"
   },
   "optionalDependencies": {
     "@commitlint/load": ">6.1.1"
