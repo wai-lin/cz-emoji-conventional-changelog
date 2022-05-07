@@ -5,6 +5,8 @@ var map = require('lodash.map');
 var longest = require('longest');
 var chalk = require('chalk');
 
+var emoji = require('./emoji.json');
+
 var filter = function(array) {
   return array.filter(function(x) {
     return x;
@@ -23,7 +25,10 @@ var maxSummaryLength = function(options, answers) {
 
 var filterSubject = function(subject, disableSubjectLowerCase) {
   subject = subject.trim();
-  if (!disableSubjectLowerCase && subject.charAt(0).toLowerCase() !== subject.charAt(0)) {
+  if (
+    !disableSubjectLowerCase &&
+    subject.charAt(0).toLowerCase() !== subject.charAt(0)
+  ) {
     subject =
       subject.charAt(0).toLowerCase() + subject.slice(1, subject.length);
   }
@@ -41,8 +46,9 @@ module.exports = function(options) {
 
   var length = longest(Object.keys(types)).length + 1;
   var choices = map(types, function(type, key) {
+    const emj = emoji.types[key];
     return {
-      name: (key + ':').padEnd(length) + ' ' + type.description,
+      name: (key + emj + ':').padEnd(length) + ' ' + type.description,
       value: key
     };
   });
@@ -99,7 +105,10 @@ module.exports = function(options) {
           },
           default: options.defaultSubject,
           validate: function(subject, answers) {
-            var filteredSubject = filterSubject(subject, options.disableSubjectLowerCase);
+            var filteredSubject = filterSubject(
+              subject,
+              options.disableSubjectLowerCase
+            );
             return filteredSubject.length == 0
               ? 'subject is required'
               : filteredSubject.length <= maxSummaryLength(options, answers)
@@ -111,7 +120,10 @@ module.exports = function(options) {
                 ' characters.';
           },
           transformer: function(subject, answers) {
-            var filteredSubject = filterSubject(subject, options.disableSubjectLowerCase);
+            var filteredSubject = filterSubject(
+              subject,
+              options.disableSubjectLowerCase
+            );
             var color =
               filteredSubject.length <= maxSummaryLength(options, answers)
                 ? chalk.green
@@ -199,8 +211,9 @@ module.exports = function(options) {
         // parentheses are only needed when a scope is present
         var scope = answers.scope ? '(' + answers.scope + ')' : '';
 
+        var emj = emoji.types[answers.type];
         // Hard limit this line in the validate
-        var head = answers.type + scope + ': ' + answers.subject;
+        var head = answers.type + scope + ': ' + emj + ' ' + answers.subject;
 
         // Wrap these lines at options.maxLineWidth characters
         var body = answers.body ? wrap(answers.body, wrapOptions) : false;

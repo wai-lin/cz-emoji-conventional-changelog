@@ -1,4 +1,4 @@
-# cz-conventional-changelog
+# Forked of cz-conventional-changelog
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/commitizen/cz-conventional-changelog.svg)](https://greenkeeper.io/)
 
