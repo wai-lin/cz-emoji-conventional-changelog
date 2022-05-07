@@ -46,7 +46,7 @@ module.exports = function(options) {
 
   var length = longest(Object.keys(types)).length + 1;
   var choices = map(types, function(type, key) {
-    const emj = emoji.types[key];
+    const emj = emoji.types[key].emoji;
     return {
       name: (key + emj + ':').padEnd(length) + ' ' + type.description,
       value: key
@@ -211,7 +211,7 @@ module.exports = function(options) {
         // parentheses are only needed when a scope is present
         var scope = answers.scope ? '(' + answers.scope + ')' : '';
 
-        var emj = emoji.types[answers.type];
+        var emj = emoji.types[answers.type].emoji;
         // Hard limit this line in the validate
         var head = answers.type + scope + ': ' + emj + ' ' + answers.subject;
 
