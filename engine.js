@@ -48,7 +48,7 @@ module.exports = function(options) {
   var choices = map(types, function(type, key) {
     const emj = emoji.types[key].emoji;
     return {
-      name: (key + emj + ':').padEnd(length) + ' ' + type.description,
+      name: (emj + key + ':').padEnd(length) + ' ' + type.description,
       value: key
     };
   });
