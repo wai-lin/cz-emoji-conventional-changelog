@@ -1,5 +1,5 @@
 {
-  "name": "cz-emoji-conventional-changelog",
+  "name": "cz-emojii-conventional-changelog",
   "version": "0.0.0-semantically-released.0",
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",
